@@ -129,6 +129,9 @@ img[place="3"] {
   float: left;
   margin-right: 37px;
 }
+.modalBio h5 {
+  margin-top: 10px;
+}
 .modalAbout {
   margin-top: 39px;
   margin-right: 37px;
