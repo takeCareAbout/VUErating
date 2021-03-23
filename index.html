@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VUErating</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="rating">
+      <header>
+        <h3>Рейтинг пользователей:</h3>
+        <button v-on:click="ratingSort"></button>
+      </header>
+      <ul>
+          <li v-for="(user, index) in users" :key="user.id">
+              <section class="userCard" @click="modalID = user.id">
+                  <img :src="user.avatar" height="60" alt="Avatar" v-bind:place="user.place">
+                  <div class="userBio">
+                      <h4>Пользователь:</h4>
+                      <span>{{user.name}}</span>
+                  </div>
+                  <span class="userRating">{{user.rating}}</span>
+              </section>
+
+              <div class="modalBack" v-if="modalID == user.id" @click="modalID = ''">
+                  <div class="modalContainer" @click.stop>
+                      <h3>Профиль пользователя:</h3>
+                      <div class="modalCross" @click="modalID = ''">
+                        <img src='assets/Cross.svg' height="16">
+                      </div>
+                      <div class='modalBio'>
+                          <img :src="user.avatar" height="129" alt="Avatar" v-bind:place="user.place">
+                          <h5>Пользователь:</h5>
+                              <span>{{user.name}}</span>
+                          <h5>Баллы:</h5>
+                              <span>{{user.rating}}</span>
+                          <h5>Позиция в рейтинге:</h5>
+                              <span>{{index+1}}</span>
+                      </div>
+                      <div class="modalAbout">
+                          <h5>О себе:</h5>
+                          <p>{{user.description}}</p>
+                      </div>
+                  </div>
+              </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <script src="https://unpkg.com/vue@2"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
